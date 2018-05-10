@@ -1,2 +1,3 @@
 .idea
-images/php/app
+www/lumen/vendor
+image/mysql/data
