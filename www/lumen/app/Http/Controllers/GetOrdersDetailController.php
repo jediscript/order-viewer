@@ -5,7 +5,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\ValueObject\OrderId;
+use App\Domain\ValueObject\TrackingNumber;
 use App\Service\CustomerOrdersService;
 
 class GetOrdersDetailController extends Controller
@@ -17,17 +17,24 @@ class GetOrdersDetailController extends Controller
         $this->customerOrdersService = $customerOrdersService;
     }
 
-    public function getOne(string $orderId)
+    /**
+     * @param string $trackingNumber
+     * @return string
+     */
+    public function getOne(string $trackingNumber)
     {
-        return $this->customerOrdersService->getOne(OrderId::fromString($orderId));
+        return $this->customerOrdersService->getOne(TrackingNumber::fromString($trackingNumber));
     }
 
-    public function getMany(string $orderIds)
+    /**
+     * @param string $trackingNumbers
+     */
+    public function getMany(string $trackingNumbers)
     {
         // strips all whitespaces and explode to an array
-        $orderIds = preg_replace('/\s+/', '', $orderIds);
-        $orderIds = explode(',', $orderIds);
+        $trackingNumbers = preg_replace('/\s+/', '', $trackingNumbers);
+        $trackingNumbers = explode(',', $trackingNumbers);
 
-        return $this->customerOrdersService->getMany($orderIds);
+        $this->customerOrdersService->getMany($trackingNumbers);
     }
 }

@@ -5,25 +5,32 @@
 
 namespace App\Domain\ValueObject;
 
-use Exception;
+use DomainException;
 
-class OrderId
+class TrackingNumber
 {
     private $id;
 
     private function __construct($id)
     {
         if (!is_string($id)) {
-            throw new Exception("Order ID must be of type string.");
+            throw new DomainException("Tracking number is invalid");
         }
 
         $this->id = $id;
     }
 
-    public static function fromString($string) {
+    /**
+     * @param string $string
+     * @return TrackingNumber
+     */
+    public static function fromString(string $string) {
         return new self($string);
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return (string)$this->id;

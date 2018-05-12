@@ -5,11 +5,11 @@
 
 namespace App\Service;
 
-use App\Domain\ValueObject\OrderId;
+use App\Domain\ValueObject\TrackingNumber;
 
 interface OrdersServiceInterface
 {
-    public function getOne(OrderId $orderId): string;
+    public function getOne(TrackingNumber $trackingNumber): string;
 
-    public function getMany(array $orderIds);
+    public function getMany(array $trackingNumbers);
 }

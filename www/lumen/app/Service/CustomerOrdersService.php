@@ -5,7 +5,7 @@
 
 namespace App\Service;
 
-use App\Domain\ValueObject\OrderId;
+use App\Domain\ValueObject\TrackingNumber;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
@@ -22,9 +22,9 @@ class CustomerOrdersService implements OrdersServiceInterface
         $this->ordersClient = $ordersClient;
     }
 
-    public function getOne(OrderId $orderId): string
+    public function getOne(TrackingNumber $trackingNumber): string
     {
-        $response = $this->ordersClient->request('GET', (string)$orderId, [
+        $response = $this->ordersClient->request('GET', (string)$trackingNumber, [
             'headers' => [
                 'X-Time-Zone' => 'Asia/Manila',
             ]
@@ -33,13 +33,13 @@ class CustomerOrdersService implements OrdersServiceInterface
         return $response->getBody();
     }
 
-    public function getMany(array $orderIds)
+    public function getMany(array $trackingNumbers)
     {
-        $totalOrders = count($orderIds);
+        $totalOrders = count($trackingNumbers);
 
-        $requests = function ($totalOrders, $orderIds) {
+        $requests = function ($totalOrders, $trackingNumbers) {
             for ($i = 0; $i < $totalOrders; $i++) {
-                yield new Request('GET', 'https://api.staging.lbcx.ph/v1/orders/' . $orderIds[$i], [
+                yield new Request('GET', 'https://api.staging.lbcx.ph/v1/orders/' . $trackingNumbers[$i], [
                     'headers' => [
                         'X-Time-Zone' => 'Asia/Manila',
                     ]
@@ -47,7 +47,7 @@ class CustomerOrdersService implements OrdersServiceInterface
             }
         };
 
-        $pool = new Pool($this->ordersClient, $requests($totalOrders, $orderIds), [
+        $pool = new Pool($this->ordersClient, $requests($totalOrders, $trackingNumbers), [
             'concurrency' => 5,
             'fulfilled' => function($response, $index) {
                 echo $response->getBody();
