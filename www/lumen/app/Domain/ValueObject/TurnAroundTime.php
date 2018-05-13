@@ -8,16 +8,6 @@ namespace App\Domain\ValueObject;
 use DateTime;
 use DomainException;
 
-/**
- * @method static TurnAroundTime CONFIRMED
- * @method static TurnAroundTime DELIVERED
- * @method static TurnAroundTime FAILED_DELIVERY
- * @method static TurnAroundTime FOR_PICKUP
- * @method static TurnAroundTime IN_TRANSIT
- * @method static TurnAroundTime PENDING
- * @method static TurnAroundTime PICKED_UP
- * @method static TurnAroundTime RETURNED
- */
 class TurnAroundTime
 {
     const CONFIRMED = 'confirmed';
