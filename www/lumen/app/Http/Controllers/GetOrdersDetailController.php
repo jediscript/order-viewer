@@ -31,7 +31,6 @@ class GetOrdersDetailController extends Controller
      */
     public function getMany(string $trackingNumbers)
     {
-        // strips all whitespaces and explode to an array
         $trackingNumbers = preg_replace('/\s+/', '', $trackingNumbers);
         $trackingNumbers = explode(',', $trackingNumbers);
 
