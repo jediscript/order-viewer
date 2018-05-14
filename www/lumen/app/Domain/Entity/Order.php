@@ -5,6 +5,7 @@
 
 namespace App\Domain\Entity;
 
+use App\Domain\ValueObject\DeliveryStatus;
 use App\Domain\ValueObject\OrderId;
 use App\Domain\ValueObject\TrackingNumber;
 use Illuminate\Support\Collection;
@@ -24,6 +25,10 @@ class Order
      * @var Collection
      */
     private $turnAroundTime;
+    /**
+     * @var DeliveryStatus
+     */
+    private $status;
     /**
      * @var Money
      */
@@ -70,6 +75,7 @@ class Order
      * @param OrderId $orderId
      * @param TrackingNumber $trackingNumber
      * @param Collection $turnAroundTime
+     * @param DeliveryStatus $status
      * @param Money $subTotal
      * @param Money $shipping
      * @param Money $tax
@@ -85,6 +91,7 @@ class Order
         OrderId $orderId,
         TrackingNumber $trackingNumber,
         Collection $turnAroundTime,
+        DeliveryStatus $status,
         Money $subTotal,
         Money $shipping,
         Money $tax,
@@ -99,6 +106,7 @@ class Order
         $this->orderId = $orderId;
         $this->trackingNumber = $trackingNumber;
         $this->turnAroundTime = $turnAroundTime;
+        $this->status = $status;
         $this->subTotal = $subTotal;
         $this->shipping = $shipping;
         $this->tax = $tax;
@@ -133,6 +141,14 @@ class Order
     public function getTurnAroundTime(): Collection
     {
         return $this->turnAroundTime;
+    }
+
+    /**
+     * @return DeliveryStatus
+     */
+    public function getStatus(): DeliveryStatus
+    {
+        return $this->status;
     }
 
     /**
