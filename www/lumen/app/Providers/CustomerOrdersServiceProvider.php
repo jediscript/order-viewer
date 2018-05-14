@@ -16,7 +16,7 @@ class CustomerOrdersServiceProvider extends ServiceProvider
         $this->app->singleton(CustomerOrdersService::class, function () {
 
             $ordersClient = new Client([
-                'base_uri' => 'https://api.staging.lbcx.ph/v1/orders/'
+                'base_uri' => env('ORDERS_API_URL')
             ]);
 
             return new CustomerOrdersService($ordersClient);

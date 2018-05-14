@@ -62,7 +62,7 @@ class CustomerOrdersService implements OrdersServiceInterface
 
         $requests = function ($totalOrders, $trackingNumbers) {
             for ($i = 0; $i < $totalOrders; $i++) {
-                yield new Request('GET', 'https://api.staging.lbcx.ph/v1/orders/' . $trackingNumbers[$i], [
+                yield new Request('GET', env('ORDERS_API_URL') . $trackingNumbers[$i], [
                     'X-Time-Zone' => 'Asia/Manila',
                 ]);
             }
