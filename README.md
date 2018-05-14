@@ -25,16 +25,16 @@ Access the app in `http:\\localhost:8080`
 Execute `docker-compose down`
 
 
-# Test the app in Postman
+# Test the app in Postman or CURL
 ### Get a single order
 
-Set the URL to `GET http:\\localhost:8080\orders\<Order Tracking Number>`
+Set the URL to `GET http://localhost:8080/orders/<Order Tracking Number>`
 
-> *Example*: `localhost:8080/orders/0077-6490-VNCM`
+> *Example*: `http://localhost:8080/orders/0077-6490-VNCM`
 
 ### Get multiple orders summary
-Set the URL to `GET http:\\localhost:8080\orders\group\<Group of Order Tracking numbers separated by comma>`
+Set the URL to `GET http://localhost:8080/orders/?trackno[]=<tracking_number>&trackno[]=<tracking_number2>`
 
-> *Example*: `localhost:8080/orders/group/0077-6495-AYUX,0077-6491-ASLK,0077-6490-VNCM,0077-6478-DMAR,0077-1456-TESV,0077-0836-PEFL,0077-0526-EBDW,0077-0522-QAYC,0077-0516-VBTW,0077-0424-NSHE`
+> *Example*: `http://localhost:8080/orders/?trackno[]=0077-6495-AYUX&trackno[]=0077-6491-ASLK&trackno[]=0077-6490-VNCM&trackno[]=0077-6478-DMAR&trackno[]=0077-1456-TESV&trackno[]=0077-0836-PEFL&trackno[]=0077-0526-EBDW&trackno[]=0077-0522-QAYC&trackno[]=0077-0516-VBTW&trackno[]=0077-0424-NSHE`
 
 > Order Viewer - Jediscript (c) 2018

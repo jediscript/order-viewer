@@ -17,4 +17,4 @@ $router->get('/', function () use ($router) {
 
 $router->get('orders/{id}', 'GetOrdersDetailController@getOne');
 
-$router->get('orders/group/{ids}', 'GetOrdersDetailController@getMany');
+$router->get('orders', 'GetOrdersDetailController@getMany');

@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\ValueObject\TrackingNumber;
 use App\Service\CustomerOrdersService;
+use Illuminate\Http\Request;
 
 class GetOrdersDetailController extends Controller
 {
@@ -27,13 +28,11 @@ class GetOrdersDetailController extends Controller
     }
 
     /**
-     * @param string $trackingNumbers
+     * @param Request $request
      */
-    public function getMany(string $trackingNumbers)
+    public function getMany(Request $request)
     {
-        $trackingNumbers = preg_replace('/\s+/', '', $trackingNumbers);
-        $trackingNumbers = explode(',', $trackingNumbers);
-
+        $trackingNumbers = $request->input('trackno');
         $this->customerOrdersService->getMany($trackingNumbers);
     }
 }
