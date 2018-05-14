@@ -9,7 +9,7 @@ use App\Domain\ValueObject\TrackingNumber;
 
 interface OrdersServiceInterface
 {
-    public function getOne(TrackingNumber $trackingNumber): string;
+    public function displayOrder(TrackingNumber $trackingNumber);
 
-    public function getMany(array $trackingNumbers);
+    public function displayOrders(array $trackingNumbers);
 }

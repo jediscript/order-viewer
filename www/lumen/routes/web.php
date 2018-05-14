@@ -15,6 +15,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('orders/{id}', 'GetOrdersDetailController@getOne');
+$router->get('orders/{id}', 'GetOrdersDetailController@displayOrder');
 
-$router->get('orders', 'GetOrdersDetailController@getMany');
+$router->get('orders', 'GetOrdersDetailController@displayOrders');

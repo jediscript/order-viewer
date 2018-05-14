@@ -20,19 +20,18 @@ class GetOrdersDetailController extends Controller
 
     /**
      * @param string $trackingNumber
-     * @return string
      */
-    public function getOne(string $trackingNumber)
+    public function displayOrder(string $trackingNumber)
     {
-        return $this->customerOrdersService->getOne(TrackingNumber::fromString($trackingNumber));
+        $this->customerOrdersService->displayOrder(TrackingNumber::fromString($trackingNumber));
     }
 
     /**
      * @param Request $request
      */
-    public function getMany(Request $request)
+    public function displayOrders(Request $request)
     {
         $trackingNumbers = $request->input('trackno');
-        $this->customerOrdersService->getMany($trackingNumbers);
+        $this->customerOrdersService->displayOrders($trackingNumbers);
     }
 }
